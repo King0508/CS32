@@ -1,0 +1,47 @@
+Stack: 
+pop row: 4 pop columns: 3
+pop row: 3 pop columns: 3
+pop row: 5 pop columns: 3
+pop row: 5 pop columns: 2
+pop row: 5 pop columns: 1
+pop row: 6 pop columns: 1
+pop row: 7 pop columns: 1
+pop row: 8 pop columns: 1
+pop row: 8 pop columns: 2
+pop row: 6 pop columns: 3
+pop row: 4 pop columns: 4
+pop row: 4 pop columns: 5
+
+
+Queue: 
+pop row: 4 pop columns: 3
+pop row: 4 pop columns: 4
+pop row: 5 pop columns: 3
+pop row: 3 pop columns: 3
+pop row: 4 pop columns: 5
+pop row: 6 pop columns: 3
+pop row: 5 pop columns: 2
+pop row: 4 pop columns: 6
+pop row: 5 pop columns: 5
+pop row: 5 pop columns: 1
+pop row: 4 pop columns: 7
+pop row: 6 pop columns: 5
+
+The stack algorithm first saves the starting coordinate, then each available path from the starting position onto the stack. 
+The coordinate at the top of the stack is popped and is where the next cycle of the algorithm begins. Starting from position 
+= top of stack, the first step is repeated in that all possible paths from current location will be saved onto the stack. 
+And again, top of the stack is popped to begin the next cycle. 
+Essentially, the algorithms saves tree branch of possible paths onto the stack, and afterwards jump to the location at top of stack. 
+When a deadend is reached, the alogorithm backtracks in the stack and goes on to explore to a slightly different path of the maze by using 
+coordinates saved earlier on the stack. The algorithm repeats itself until the target coordinate is reached or no solution is found. 
+
+
+The queue algorithm on the other hand alternates between different paths by first saving the starting coordinate, then each 
+available path from the starting position onto the queue. Then the starting position is popped from queue and the algorithm
+jumps to next item in the queue which is one of the saved coordinate from the starting location. 
+From that location, possible directions one can move in the maze is added onto the back of the queue, 
+and that location's coordinate is pop from the front of the queue. 
+Essentially, the algorithms saves possible pathings for different paths simultaneously, it does not follow one path and move on to 
+another path when the first path is a deadend as would the stack algorithm. It jumps back and forth between those 
+paths, and save the available coordinates for later use. This process is repeated until the final destination is 
+reached or no solution is found when all paths lead to deadends. 

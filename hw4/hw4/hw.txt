@@ -1,0 +1,29 @@
+1e. Test 3 fails because iterator p becomes invalidated after the vector reallocates itself in memory to increase size. 
+The reallocation creates a copy of the orignal vector somewhere else in meory but iterator p is still pointing to the old 
+vector, so incrementing p might never reach the end of the vector, causing an infinute loop. 
+
+3. The reason Set<Coord>::insert causes at least one compilation error is because within the function, it calls another function
+called typename Set<T>::Node* Set<T>::findFirstAtMost(const T& value) const. This function tries to compare different Coords with
+the > operator, which will cause a compiler error because the Coord class did not implement functions for the different comparion
+operators such as > and <. 
+
+4b. Each file has no access to its previous directory, so without passing in a string path, we could only print out the name of each
+individual file but not all of the files/directories preceding it.  
+
+5a. Time complexity = O(N^3). The outer loop (from i = 0 to N-1) runs N times. The middle loop (from j = 0 to N - 1), for each iteration of the outer
+loop, runs N times. The inner loop (from k = 0 to N - 1), for each iteration of the middle loop, runs N times. So the answer is O(N*N*N) = O(N^3). 
+
+5b. Time complexity = O(N^3). The outer loop (from i to N) runs N times. The middle loop (from j = 0 to i - 1) combined with the outer loop runs 
+(N+1)*N/2 = (0.5N^2 + 0.5N) many times. Removing the N term and the constant, this equates to N^2. The inner loop (from k = 0 to N - 1) runs N times. 
+So, the answer is O(N^2 * N) = O(N^3). 
+
+6a. Time complexity = O(N^2).The for loop runs (from k = 0 to size - 1) N times. In each iteration of the loop, get(k,v) is called. get has time 
+complexity O(N) because in the worst case scenarios, get loops through half of N item set. So overall, O(N*N) = O(N^2).
+
+6b. Time complexity = O(N log N). The for loops for copying items into v and the while loop for deleting result nodes only has time complexity N because the 
+loops each loop through a set with N items. The final for loop has maximum 2N iterations and each iteration has a constant time complexity, so its time complexity 
+is just O(N). All of the loops in this function has time complexity O(N), so the sort function's time complexity O(N log N) is the function's time complexity. 
+
+6c. Time complexity = O(N). The while loops loops maximally 2N times, and the for loop loops maximally N times, because once one set has been completed inserted,
+the loop terminates. None of the loops are nested and the rest of the function only copies sets so nothing excedes O(N). Therefore the time complexity of the function 
+is O(N). 

@@ -1,0 +1,83 @@
+Name of your recursive goblin movement function: 
+
+	void findPath(int r, int c, int pr, int pc, std::vector<std::string>& ans, std::string& currentPath)
+
+Location of recursive goblin movement function: 
+
+	actor.h, line 478
+
+Description of goblin movement function: 
+	
+	description of the parameters: 
+
+		the recursive function that 4 integer inputs that represents the coordinates of the player and the goblins,
+		a vector of strings by reference that stores all possible paths from a goblin to a player, and a string by 
+		reference that stores the currentPath the recursive function is building. currentPath consists of the letters
+		"R", "L" , "U" and "D". Each of which represents a direction that the goblin moved in and is used to find the 
+		optimal move for the goblin through backtracking. 
+
+	description of the recursion: 
+		
+		Two base case exists for this recursive function. 
+			1. when the coordinates of the player is identical to the coordinate of the goblins(ie. pr == gr && pc == gc), the function returns 
+			2. when currentPath.size() >= goblin smell distance, the function returns 
+		
+		currentPath is added to the ans vector when the distance between player and the goblin is one, and that the size of currentPath 
+		is less than the smell distance. 
+		
+		A location in the temple that has been visited in the recursion is marked with the char '#', and will be later replaced with the char 
+		that was there initially. Each time the goblin moves, depending on the direction, one of the four listed direction strings will be appended
+		to currentPath. If the distance between the player and the goblin is not one, then the function is called again recursively with the location 
+		of the goblin updated to its new position after it has moved. 
+
+		The end of the recursive function yields a vector of strings that represent valid paths from the goblin to the player. 
+		
+	An additional loop through the vector finds the the shorest string in length, and the goblin will move in the direction indicated by the 
+	zeroth index of that string. 
+
+Description of level, room and cooridor generation
+		
+		Basic Overview: the Temple class constructor creates a 70 by 18 grid filled with '#', 
+		each time a new level is reached, newTemple() frees dynamically allocated memory and 
+		generate() creates the rooms and cooridors. 
+		
+		useful functions include:
+			
+			void Temple::newTemple() 
+				- this function is called each time the player reaches a staircase that leads to the next level
+				- frees the dynamically allocated memory used in the level before including monsters, objects and rooms(Player's inventory is not included)
+
+			void Temple::generate() 
+				- fill the room with '#' if level is between 1-4 
+				- randomly generate 3-6 rooms with random dimensions
+
+				- calls bool Temple::createRoom(Room* x)
+					-if the dimensions of x do not conflict with rooms already created, the room x is drawn on the grid by ' ', x is added to the room vector 
+					-if x is not a valid room, x is deleted, and a new room x is created and passed into the function 
+					-the process repeats until the correct number of rooms are generated 
+
+				- calls void Temple::createCooridor()
+					- Sort rooms by the x-coordinate of their center
+					- calls void Temple::drawCooridor(int x1, int y1, int x2, int y2)
+						- Draws horizontal cooridor and vertical cooridor 
+
+				- calls void Temple::actorsAndObjects()
+					- based on the level of the game, create the appropriate monsters on the grid by giving them random locations, 
+					correct attributes, and correct weapon. 
+					- based on the level of the game, create game objects, stairs, and the golden idol 
+					- gives the player a random location and display it on the grid
+
+			void Temple::emptyCoord(int &r, int &c) const //r and c are passed by reference, the function returns a random empty coordinate on the grid 
+
+
+Unfinished functionality: 
+	
+			N/A 
+
+
+
+
+
+
+
+

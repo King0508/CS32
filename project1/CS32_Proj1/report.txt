@@ -1,0 +1,53 @@
+History.h private data members: 
+
+	-number of rows in the history map 
+	-number of columns in the history map 
+	-array holding the row data of each preached tooter 
+	-array holding the column data of each preached tooter 
+	-number of tooters preached 
+
+History.cpp Pseudocode: 
+	
+History::History(int nRows, int nCols)
+	:initialize the dimensions of the history map from row and column inputs, 
+	set the number of tooters preached to zero
+
+
+bool History::record(int r, int c)
+	
+	if location of tooter is invalid, that is not on the map 
+		return false
+
+	put adjusted row location of preached tooter into corresponding private data member array 
+	put adjusted column location of preached tooter into corresponding private data member array 
+
+	return true 
+
+void History::display() const
+	
+	clear the game map 
+	make a 2 dimensional array of characters 
+
+	repeatedly: 
+		loop through the rows of the 2-D array 
+
+		repeatedly: 
+			loop through the columns of the 2-D array 
+			fill each slot in the 2-D array with '.'
+
+			repeatedly: 
+				if a tooter is preached at some location for the first time in the 2-D array
+					set character at that location in the array to 'A'
+				else if a tooter is preached at some location not for the first time in the 2-D array
+					add one to the integral value of the character in that location in the array 
+			
+			print the 2-D array	
+
+		print an empty line 
+
+	print an empty line 
+
+
+FULL LIST OF TEST DATA: 
+ 
+
